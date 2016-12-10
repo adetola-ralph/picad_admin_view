@@ -1,0 +1,1 @@
+# picad_admin_view
