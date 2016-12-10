@@ -1,12 +1,12 @@
 import * as firebase from 'firebase';
 
 // Initialize Firebase
-var config = {
+const config = {
   apiKey: 'AIzaSyDRl7Yche_9bMYt8x63deX8IymnLoTymbw',
   authDomain: 'picad-4223c.firebaseapp.com',
   databaseURL: 'https://picad-4223c.firebaseio.com',
   storageBucket: 'picad-4223c.appspot.com',
-  messagingSenderId: '177009626460'
+  messagingSenderId: '177009626460',
 };
 
 firebase.initializeApp(config);

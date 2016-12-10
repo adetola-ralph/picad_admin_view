@@ -7,7 +7,6 @@
 
 <script>
 import Hello from './components/Hello';
-import { authentication } from './firebase';
 
 export default {
   name: 'app',
