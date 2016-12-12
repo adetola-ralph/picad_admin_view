@@ -16,6 +16,10 @@ const routes = [
     path: '/dashboard',
     component: Dashboard,
   },
+  {
+    path: '/',
+    redirect: '/login',
+  },
 ];
 
 const router = new VueRouter({

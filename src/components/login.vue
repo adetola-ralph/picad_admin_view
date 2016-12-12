@@ -1,6 +1,28 @@
 <template>
-  <div>
-    Login
+  <div class="bg-picture">
+    <div class="row">
+        <div class="col s12 m6 l4 offset-m3 offset-l4 center-panel">
+          <div class="card-panel">
+            <form autocomplete="off" v-on:submit.prevent="onSubmit">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="username" type="text" class="validate" v-model="username">
+                  <label for="username">Username</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="password" type="password" class="validate" v-model="password">
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <button class="btn waves-effect waves-light purple darken-4" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -9,7 +31,41 @@ export default {
   name: 'login',
   data() {
     return {
+      username: '',
+      password: '',
     };
+  },
+  methods: {
+    onSubmit() {
+      /*eslint-disable no-alert*/
+      alert(this.username + " " + this.password);
+    },
   },
 };
 </script>
+
+<style>
+.center-panel {
+  position: fixed;
+  top: 50%;
+  /* bring your own prefixes */
+  transform: translate(0%, -50%);
+}
+/* label color */
+.input-field label {
+ color: #4a148c;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label {
+ color: #4a148c;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus, .input-field input[type=password]:focus {
+ border-bottom: 1px solid #4a148c;
+ box-shadow: 0 1px 0 0 #4a148c;
+}
+.bg-picture {
+  background-color: rgba(74, 20, 140, 0.5);
+  height: 100vh;
+}
+</style>
