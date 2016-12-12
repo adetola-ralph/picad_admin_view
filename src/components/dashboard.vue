@@ -16,6 +16,7 @@ export default {
     };
   },
   created() {
+    console.log(user);
     if (user === null) {
       router.push({ path: 'login' });
     }

@@ -29,6 +29,7 @@
 <script>
 import router from './../router';
 import user from './../auth_helper';
+import { authentication } from './../firebase';
 
 export default {
   name: 'login',
@@ -43,6 +44,18 @@ export default {
       /* eslint-disable no-console */
       console.log(`${this.username} ${this.password}`);
       this.disableButton();
+      authentication.signInWithEmailAndPassword(this.username, this.password).catch((error) => {
+        const errorMessage = error.message;
+        this.handleError(errorMessage);
+        this.enableButton();
+      }).then(() => {
+        // this.getUser(user.uid);
+        router.push({ path: 'dashboard' });
+      });
+    },
+    handleError(errorMessage) {
+      /* eslint-disable no-undef */
+      Materialize.toast(errorMessage, 5000);
     },
     disableButton() {
       document.querySelector('.submit i').innerHTML = 'autorenew';
