@@ -17,7 +17,7 @@
             </div>
             <button class="btn waves-effect waves-light purple darken-4 submit" type="submit" name="action">
               Submit
-              <i class="material-icons right">send</i>
+              <i class="material-icons right spin">send</i>
             </button>
           </form>
         </div>
@@ -82,4 +82,21 @@ export default {
   .card-title h4 {
     font-family: 'Parisienne', cursive;
   }
+
+  .spin {
+    animation: fa-spin 2s infinite linear;
+  }
+
+  @-moz-keyframes fa-spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes fa-spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes fa-spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
 </style>
