@@ -16,8 +16,8 @@
               </div>
             </div>
             <button class="btn waves-effect waves-light purple darken-4 submit" type="submit" name="action">
-              Submit
-              <i class="material-icons right spin">send</i>
+              <span>Submit</span>
+              <i class="material-icons right">send</i>
             </button>
           </form>
         </div>
@@ -42,7 +42,19 @@ export default {
     onSubmit() {
       /* eslint-disable no-console */
       console.log(`${this.username} ${this.password}`);
-      console.log(document.querySelector('.submit'));
+      this.disableButton();
+    },
+    disableButton() {
+      document.querySelector('.submit i').innerHTML = 'autorenew';
+      document.querySelector('.submit i').classList.add('spin');
+      document.querySelector('.submit span').innerHTML = 'processing';
+      document.querySelector('.submit').disabled = true;
+    },
+    enableButton() {
+      document.querySelector('.submit i').innerHTML = 'send';
+      document.querySelector('.submit i').classList.remove('spin');
+      document.querySelector('.submit span').innerHTML = 'Submit';
+      document.querySelector('.submit').disabled = false;
     },
   },
   created() {
