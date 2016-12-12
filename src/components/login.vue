@@ -3,14 +3,13 @@
     <div class="row">
         <div class="col s12 m6 l4 offset-m3 offset-l4 center-panel">
           <div class="card-panel">
+            <div class="card-title center-align purple-text text-darken-4"><h4>Picad</h4></div>
             <form autocomplete="off" v-on:submit.prevent="onSubmit">
               <div class="row">
                 <div class="input-field col s12">
                   <input id="username" type="text" class="validate" v-model="username">
                   <label for="username">Username</label>
                 </div>
-              </div>
-              <div class="row">
                 <div class="input-field col s12">
                   <input id="password" type="password" class="validate" v-model="password">
                   <label for="password">Password</label>
@@ -45,6 +44,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Parisienne');
+
 .center-panel {
   position: fixed;
   top: 50%;
@@ -67,5 +68,8 @@ export default {
 .bg-picture {
   background-color: rgba(74, 20, 140, 0.5);
   height: 100vh;
+}
+.card-title h4 {
+  font-family: 'Parisienne', cursive;
 }
 </style>
