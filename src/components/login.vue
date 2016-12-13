@@ -28,7 +28,7 @@
 
 <script>
 import router from './../router';
-import user from './../auth_helper';
+// import user from './../auth_helper';
 import { authentication } from './../firebase';
 
 export default {
@@ -55,7 +55,8 @@ export default {
     },
     handleError(errorMessage) {
       /* eslint-disable no-undef */
-      Materialize.toast(errorMessage, 5000);
+      const message = `<span><i class="material-icons left">priority_high</i> ${errorMessage}</span>`;
+      Materialize.toast(message, 5000);
     },
     disableButton() {
       document.querySelector('.submit i').innerHTML = 'autorenew';
@@ -71,9 +72,13 @@ export default {
     },
   },
   created() {
-    if (user !== null) {
-      router.push({ path: 'dashboard' });
-    }
+    authentication.onAuthStateChanged((user) => {
+      if (user) {
+        router.push({ path: 'dashboard' });
+      } else {
+        // router.push({ path: 'dashboard' });
+      }
+    });
   },
 };
 </script>
