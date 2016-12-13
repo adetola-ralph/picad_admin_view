@@ -1,7 +1,52 @@
 <template>
   <div>
-    dashboard
-    <a class="waves-effect waves-light btn purple darken-4 logout" v-on:click="logout"><i class="material-icons right">power_settings_new</i>Logout</a>
+    <nav class="purple darken-3">
+      <div class="nav-wrapper">
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a class="waves-effect waves-light logout" v-on:click="logout">
+              Logout
+              <i class="material-icons left">power_settings_new</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Page Layout here -->
+    <div class="row" style="margin-bottom:0px;">
+      <div class="col m3 dashboard-sidebar blue-grey darken-3 hide-on-small-only z-depth-2">
+        <ul class="collapsible blue-grey darken-3 blue-grey-text" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons left">directions_car</i>
+              Drivers
+              <i class="material-icons right">arrow_drop_down</i>
+            </div>
+            <div class="collapsible-body">
+              <ul class="collection">
+                <li class="collection-item"><i class="material-icons left">keyboard_arrow_right</i>All drivers</li>
+                <li class="collection-item"><i class="material-icons left">keyboard_arrow_right</i>Add new driver</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons left">people</i>
+              Passengers
+              <i class="material-icons right">arrow_drop_down</i>
+            </div>
+            <div class="collapsible-body">
+              <ul class="collection">
+                <li class="collection-item"><i class="material-icons left">keyboard_arrow_right</i>All Passengers</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col s12 m9 dashboard-main z-depth-1">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -36,6 +81,46 @@ export default {
         router.push({ path: 'login' });
       }
     });
+    /* eslint-disable no-undef */
+    $(document).ready(() => {
+      $('.collapsible').collapsible();
+    });
   },
 };
 </script>
+
+<style>
+  .dashboard-sidebar, .dashboard-main {
+    min-height: 100vh !important;
+  }
+
+  .dashboard-main {
+    background-color: #e9edf2;
+  }
+
+  .dashboard-sidebar {
+    padding: 0 !important;
+  }
+
+  .collapsible .collapsible-header, .collapsible-body, .collection .collection-item {
+    background-color: #37474f;
+    border-bottom: none !important;
+  }
+
+  .collapsible {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    margin: 0.5rem 0 1rem 0;
+    box-shadow: none;
+  }
+
+  .collapsible-header:hover, .collapsible li:hover, .collapsible .active {
+    background-color: #263238;
+    color: white;
+  }
+
+  .collapsible li:hover {
+    background-color: #455a64;
+  }
+</style>
