@@ -29,7 +29,7 @@
 <script>
 import router from './../router';
 // import user from './../auth_helper';
-import { authentication } from './../firebase';
+import { authentication, database } from './../firebase';
 
 export default {
   name: 'login',
@@ -41,22 +41,30 @@ export default {
   },
   methods: {
     onSubmit() {
-      /* eslint-disable no-console */
-      console.log(`${this.username} ${this.password}`);
       this.disableButton();
       authentication.signInWithEmailAndPassword(this.username, this.password).catch((error) => {
         const errorMessage = error.message;
         this.handleError(errorMessage);
         this.enableButton();
-      }).then(() => {
-        // this.getUser(user.uid);
-        router.push({ path: 'dashboard' });
+      });
+    },
+    getUser(userid) {
+      database.ref(`/users/${userid}`).once('value').then((snapshot) => {
+        const user = snapshot.val();
+        if (user.role === 'administrator') {
+          router.push({ path: 'dashboard' });
+        } else {
+          authentication.signOut().then(() => {
+            this.handleError('Not authorised to access this page');
+            this.enableButton();
+          });
+        }
       });
     },
     handleError(errorMessage) {
       /* eslint-disable no-undef */
       const message = `<span><i class="material-icons left">priority_high</i> ${errorMessage}</span>`;
-      Materialize.toast(message, 5000);
+      Materialize.toast(message, 4000);
     },
     disableButton() {
       document.querySelector('.submit i').innerHTML = 'autorenew';
@@ -74,9 +82,7 @@ export default {
   created() {
     authentication.onAuthStateChanged((user) => {
       if (user) {
-        router.push({ path: 'dashboard' });
-      } else {
-        // router.push({ path: 'dashboard' });
+        this.getUser(user.uid);
       }
     });
   },
@@ -120,13 +126,13 @@ export default {
   @-moz-keyframes fa-spin {
     from { -moz-transform: rotate(0deg); }
     to { -moz-transform: rotate(360deg); }
-}
-@-webkit-keyframes fa-spin {
-    from { -webkit-transform: rotate(0deg); }
-    to { -webkit-transform: rotate(360deg); }
-}
-@keyframes fa-spin {
-    from {transform:rotate(0deg);}
-    to {transform:rotate(360deg);}
-}
+  }
+  @-webkit-keyframes fa-spin {
+      from { -webkit-transform: rotate(0deg); }
+      to { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes fa-spin {
+      from {transform:rotate(0deg);}
+      to {transform:rotate(360deg);}
+  }
 </style>
