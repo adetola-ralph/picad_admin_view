@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <nav class="purple darken-3">
       <div class="nav-wrapper">
         <ul class="right hide-on-med-and-down">
@@ -14,7 +14,7 @@
     </nav>
     <!-- Page Layout here -->
     <div class="row" style="margin-bottom:0px;">
-      <div class="col m3 dashboard-sidebar blue-grey darken-3 hide-on-small-only z-depth-2">
+      <div class="col m3 dashboard-sidebar blue-grey darken-3">
         <ul class="collapsible blue-grey darken-3 blue-grey-text" data-collapsible="accordion">
           <li>
             <div class="collapsible-header">
@@ -43,7 +43,7 @@
           </li>
         </ul>
       </div>
-      <div class="col s12 m9 dashboard-main z-depth-1">
+      <div class="col s12 m9 dashboard-main">
         <router-view></router-view>
       </div>
     </div>
@@ -76,14 +76,13 @@ export default {
   created() {
     authentication.onAuthStateChanged((user) => {
       if (user) {
-        // User is signed in.
+        /* eslint-disable no-undef */
+        $(document).ready(() => {
+          $('.collapsible').collapsible();
+        });
       } else {
         router.push({ path: 'login' });
       }
-    });
-    /* eslint-disable no-undef */
-    $(document).ready(() => {
-      $('.collapsible').collapsible();
     });
   },
 };
@@ -91,7 +90,9 @@ export default {
 
 <style>
   .dashboard-sidebar, .dashboard-main {
-    min-height: 100vh !important;
+    /*min-height: 100vh !important;*/
+    height: 100vh;
+    overflow-y: auto;
   }
 
   .dashboard-main {

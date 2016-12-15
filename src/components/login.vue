@@ -52,7 +52,7 @@ export default {
       database.ref(`/users/${userid}`).once('value').then((snapshot) => {
         const user = snapshot.val();
         if (user.role === 'administrator') {
-          router.push({ path: 'dashboard' });
+          router.push({ path: '/dashboard' });
         } else {
           authentication.signOut().then(() => {
             this.handleError('Not authorised to access this page');
