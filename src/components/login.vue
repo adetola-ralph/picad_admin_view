@@ -51,7 +51,7 @@ export default {
     getUser(userid) {
       database.ref(`/users/${userid}`).once('value').then((snapshot) => {
         const user = snapshot.val();
-        if (user.role === 'administrator') {
+        if (user.role === 'admin') {
           router.push({ path: '/dashboard' });
         } else {
           authentication.signOut().then(() => {

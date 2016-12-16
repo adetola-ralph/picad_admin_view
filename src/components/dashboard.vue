@@ -14,7 +14,7 @@
     </nav>
     <!-- Page Layout here -->
     <div class="row" style="margin-bottom:0px;">
-      <div class="col m3 dashboard-sidebar blue-grey darken-3">
+      <div class="col m2 dashboard-sidebar blue-grey darken-3">
         <ul class="collapsible blue-grey darken-3 blue-grey-text" data-collapsible="accordion">
           <li>
             <div class="collapsible-header">
@@ -43,7 +43,7 @@
           </li>
         </ul>
       </div>
-      <div class="col s12 m9 dashboard-main">
+      <div class="col s12 m10 dashboard-main">
         <router-view></router-view>
       </div>
     </div>
