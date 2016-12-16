@@ -1,24 +1,14 @@
 <template>
   <div class="flex-container">
-    <div class="col m4 s6 l3" v-for="(driver, index) in drivers">
+    <div class="col m3 s6 l2 driver-card" v-for="(driver, index) in drivers" v-bind:key="driver.uid">
       <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
+        <div class="card-image">
           <img class="activator" v-bind:src="profileImage(driver)">
+          <span class="card-title">{{ driver.firstname + ' ' + driver.lastname | capitalize }}</span>
         </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-          {{ driver.firstname + ' ' + driver.lastname }}
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">{{ driver.lastname }}<i class="material-icons right">close</i></span>
-          <ul>
-            <li>Rating</li>
-          </ul>
-          <div class="card-action">
-            <a href="#">Edit</a>
-            <a href="#">View</a>
-            <a href="#">Delete</a>
-          </div>
+        <div class="card-action">
+          <a href="#">View</a>
+          <a href="#">Edit</a>
         </div>
       </div>
     </div>
@@ -42,15 +32,27 @@ export default{
     },
   },
   created() {
-    database.ref('/users/').once('value').then((snapshot) => {
+    database.ref('/drivers/').once('value').then((snapshot) => {
       const arrayValues = Object.values(snapshot.val());
       for (const val of arrayValues) {
         this.drivers.push(val);
       }
     });
-    database.ref('/users/').on('child_changed', (data) => {
-      this.drivers.push(data.val());
+    database.ref('/drivers/').on('child_changed', (data) => {
+      this.drivers.filter((item, index) => {
+        if (item.uid === data.val().uid) {
+          return this.drivers.splice(index, 1, data.val());
+        }
+        return null;
+      });
     });
+  },
+  filters: {
+    capitalize(value) {
+      if (!value) return '';
+      const strvalue = value.toString();
+      return strvalue.charAt(0).toUpperCase() + strvalue.slice(1);
+    },
   },
 };
 </script>
@@ -62,5 +64,9 @@ export default{
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
+  }
+
+  .driver-card {
+    margin-left: 0 !important;
   }
 </style>
