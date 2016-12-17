@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import Login from './../components/login';
 import Dashboard from './../components/dashboard';
 import drivers from './../components/drivers';
+import newDriver from './../components/newDriver';
+import driverDetail from './../components/driverDetail';
 
 Vue.use(VueRouter);
 
@@ -19,6 +21,15 @@ const routes = [
         path: '',
         component: drivers,
       },
+      {
+        path: 'new-driver',
+        component: newDriver,
+      },
+      {
+        path: 'driver/:did',
+        name: 'viewDriver',
+        component: driverDetail,
+      },
     ],
   },
   {
@@ -28,7 +39,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes,
 });
 
