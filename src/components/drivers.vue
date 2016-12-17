@@ -7,7 +7,9 @@
           <span class="card-title">{{ driver.firstname + ' ' + driver.lastname | capitalize }}</span>
         </div>
         <div class="card-action">
-          <a href="#">View</a>
+          <router-link v-bind:to="{ name: 'viewDriver', params: { 'did': driver.uid }}">
+            view
+          </router-link>
           <a href="#">Edit</a>
         </div>
       </div>

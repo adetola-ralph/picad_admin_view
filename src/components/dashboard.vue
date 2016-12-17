@@ -24,8 +24,22 @@
             </div>
             <div class="collapsible-body">
               <ul class="collection">
-                <li class="collection-item"><i class="material-icons left">keyboard_arrow_right</i>All drivers</li>
-                <li class="collection-item"><i class="material-icons left">keyboard_arrow_right</i>Add new driver</li>
+                <li class="collection-item">
+                  <router-link :to="'/dashboard'">
+                    <i class="material-icons left">
+                      keyboard_arrow_right
+                    </i>
+                    All drivers
+                  </router-link>
+                </li>
+                <li class="collection-item">
+                  <router-link :to="'dashboard/new-driver'">
+                    <i class="material-icons left">
+                      keyboard_arrow_right
+                    </i>
+                    Add new driver
+                  </router-link>
+                </li>
               </ul>
             </div>
           </li>
@@ -81,7 +95,7 @@ export default {
           $('.collapsible').collapsible();
         });
       } else {
-        router.push({ path: 'login' });
+        router.push({ path: '/login' });
       }
     });
   },
