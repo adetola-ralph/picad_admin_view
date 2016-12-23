@@ -103,13 +103,15 @@ export default {
    color: #4a148c;
   }
   /* label focus color */
-  .input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label {
+  .input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label,
+  .input-field input[type=email]:focus + label, .input-field textarea:focus + label {
    color: #4a148c;
   }
   /* label underline focus color */
-  .input-field input[type=text]:focus, .input-field input[type=password]:focus {
-   border-bottom: 1px solid #4a148c;
-   box-shadow: 0 1px 0 0 #4a148c;
+  .input-field input[type=text]:focus, .input-field input[type=password]:focus,
+  .input-field input[type=email]:focus, .input-field textarea:focus {
+   border-bottom: 1px solid #4a148c !important;
+   box-shadow: 0 1px 0 0 #4a148c !important;
   }
   .bg-picture {
     background-color: rgba(74, 20, 140, 0.5);

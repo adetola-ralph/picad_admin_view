@@ -33,7 +33,7 @@
                   </router-link>
                 </li>
                 <li class="collection-item">
-                  <router-link :to="'dashboard/new-driver'">
+                  <router-link :to="'/dashboard/new-driver'">
                     <i class="material-icons left">
                       keyboard_arrow_right
                     </i>
