@@ -81,6 +81,8 @@ export default{
         formatSubmit: 'dd/mm/yyyy',
         format: 'dd/mm/yyyy',
         today: '',
+        min: new Date(1970, 0, 1),
+        max: new Date(1996, 11, 31),
         onSet(context) {
           self.dob = moment(new Date(context.select)).format('DD/MM/YYYY');
         },
