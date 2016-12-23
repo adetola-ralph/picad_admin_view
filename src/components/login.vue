@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col s12 m6 l4 offset-m3 offset-l4 center-panel">
         <div class="card-panel">
-          <div class="card-title center-align purple-text text-darken-4"><h4>Picad</h4></div>
+          <div class="card-title center-align purple-text text-darken-4"><h4 class="login-title">Picad</h4></div>
           <form autocomplete="off" v-on:submit.prevent="onSubmit">
             <div class="row">
               <div class="input-field col s12">
@@ -117,7 +117,7 @@ export default {
     background-color: rgba(74, 20, 140, 0.5);
     height: 100vh;
   }
-  .card-title h4 {
+  .login-title {
     font-family: 'Parisienne', cursive;
   }
 
