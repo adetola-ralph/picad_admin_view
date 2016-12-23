@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col s12 m6 l4 offset-m3 offset-l4 center-panel">
         <div class="card-panel">
-          <div class="card-title center-align purple-text text-darken-4"><h4>Picad</h4></div>
+          <div class="card-title center-align purple-text text-darken-4"><h4 class="login-title">Picad</h4></div>
           <form autocomplete="off" v-on:submit.prevent="onSubmit">
             <div class="row">
               <div class="input-field col s12">
@@ -28,7 +28,6 @@
 
 <script>
 import router from './../router';
-// import user from './../auth_helper';
 import { authentication, database } from './../firebase';
 
 export default {
@@ -51,8 +50,8 @@ export default {
     getUser(userid) {
       database.ref(`/users/${userid}`).once('value').then((snapshot) => {
         const user = snapshot.val();
-        if (user.role === 'administrator') {
-          router.push({ path: 'dashboard' });
+        if (user.role === 'admin') {
+          router.push({ path: '/dashboard' });
         } else {
           authentication.signOut().then(() => {
             this.handleError('Not authorised to access this page');
@@ -103,19 +102,21 @@ export default {
    color: #4a148c;
   }
   /* label focus color */
-  .input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label {
+  .input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label,
+  .input-field input[type=email]:focus + label, .input-field textarea:focus + label {
    color: #4a148c;
   }
   /* label underline focus color */
-  .input-field input[type=text]:focus, .input-field input[type=password]:focus {
-   border-bottom: 1px solid #4a148c;
-   box-shadow: 0 1px 0 0 #4a148c;
+  .input-field input[type=text]:focus, .input-field input[type=password]:focus,
+  .input-field input[type=email]:focus, .input-field textarea:focus {
+   border-bottom: 1px solid #4a148c !important;
+   box-shadow: 0 1px 0 0 #4a148c !important;
   }
   .bg-picture {
     background-color: rgba(74, 20, 140, 0.5);
     height: 100vh;
   }
-  .card-title h4 {
+  .login-title {
     font-family: 'Parisienne', cursive;
   }
 

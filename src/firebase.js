@@ -11,6 +11,7 @@ const config = {
 
 firebase.initializeApp(config);
 
+export const secApp = firebase.initializeApp(config, 'secondary');
 export const authentication = firebase.auth();
 export const storage = firebase.storage();
 export const database = firebase.database();
