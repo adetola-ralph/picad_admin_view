@@ -15,6 +15,9 @@
     <!-- Page Layout here -->
     <div class="row" style="margin-bottom:0px;">
       <div class="col m2 dashboard-sidebar blue-grey darken-3">
+        <div>
+          <p>Welcome {{user.firstname}}!</p>
+        </div>
         <ul class="collapsible blue-grey darken-3 blue-grey-text" data-collapsible="accordion">
           <li>
             <div class="collapsible-header">
@@ -66,14 +69,14 @@
 
 <script>
 import router from './../router';
-// import user from './../auth_helper';
-import { authentication } from './../firebase';
+import { authentication, database } from './../firebase';
 
 export default {
   name: 'dashboard',
   data() {
     return {
-      // user,
+      user: {},
+      userId: '',
     };
   },
   methods: {
@@ -90,9 +93,16 @@ export default {
   created() {
     authentication.onAuthStateChanged((user) => {
       if (user) {
+        this.userId = user.uid;
         /* eslint-disable no-undef */
         $(document).ready(() => {
           $('.collapsible').collapsible();
+        });
+
+        database.ref(`/users/${this.userId}`).once('value').then((snapshot) => {
+          // console.log(snapshot.val());
+          const returnedUser = snapshot.val();
+          this.user = returnedUser;
         });
       } else {
         router.push({ path: '/login' });

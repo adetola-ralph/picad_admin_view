@@ -28,7 +28,6 @@
 
 <script>
 import router from './../router';
-// import user from './../auth_helper';
 import { authentication, database } from './../firebase';
 
 export default {

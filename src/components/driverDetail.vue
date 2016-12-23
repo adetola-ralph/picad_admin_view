@@ -69,6 +69,9 @@
                 <div class="col s12">
                   <span><strong>Phone number:</strong> {{ next_of_kin.phone_number }}
                 </div>
+                <div class="col s12">
+                  <span><strong>Address:</strong> {{ next_of_kin.address }}
+                </div>
               </div>
             </fieldset>
           </div>
@@ -138,9 +141,7 @@ export default {
   },
   computed: {
     age() {
-      const age = moment(new Date(this.driver.dob), 'DDMMYYYY').fromNow().split(' ');
-      age.pop();
-      return age.join(' ');
+      return moment((this.driver.dob), 'DD/MM/YYYY').fromNow(true);
     },
     profileImage() {
       return this.driver.profile_image || '/static/driver.png';
