@@ -133,7 +133,7 @@ export default {
       return strvalue.charAt(0).toUpperCase() + strvalue.slice(1);
     },
     longDate(value) {
-      return moment(new Date(value)).format('Do MMMM, YYYY');
+      return moment(value, 'DD/MM/YYYY').format('Do MMMM, YYYY');
     },
   },
   computed: {

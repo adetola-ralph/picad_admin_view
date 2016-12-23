@@ -16,7 +16,7 @@
             </div>
             <div class="row">
               <div class="input-field col s12 m4">
-                <input type="text" class="datepicker" v-model="dob">
+                <input type="text" v-model="dob" class="datepicker" id="dob">
                 <label for="dob">Date of birth</label>
               </div>
             </div>
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 
 export default{
   name: 'newDriver',
@@ -63,11 +64,15 @@ export default{
       firstname: '',
       lastname: '',
       dob: '',
+      phone_number: '',
+      email: '',
+      address: '',
     };
   },
   methods: {
   },
   created() {
+    const self = this;
     /* eslint-disable no-undef */
     $(document).ready(() => {
       $('.datepicker').pickadate({
@@ -75,6 +80,10 @@ export default{
         selectYears: 80,
         formatSubmit: 'dd/mm/yyyy',
         format: 'dd/mm/yyyy',
+        today: '',
+        onSet(context) {
+          self.dob = moment(new Date(context.select)).format('DD/MM/YYYY');
+        },
       });
     });
   },
